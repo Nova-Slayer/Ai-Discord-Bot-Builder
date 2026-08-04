@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Discord Bot Builder Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Animations */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step { display: none; }
+        .step.active { 
+            display: block; 
+            animation: slideUpFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
+        }
+
+        /* Hide default scrollbar for a cleaner look */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 10px; }
+        
+        /* Custom Checkbox Cards */
+        .feature-card input:checked + div {
+            background-color: rgba(99, 102, 241, 0.2);
+            border-color: #6366f1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-950 via-gray-900 to-black text-gray-100 min-h-screen font-sans antialiased flex flex-col items-center justify-center p-4 selection:bg-indigo-500 selection:text-white">
+
+    <!-- Main Glassmorphism Container -->
+    <div class="w-full max-w-lg bg-gray-800/40 backdrop-blur-xl p-8 rounded-3xl shadow-[0_0_40px_rgba(99,102,241,0.1)] border border-gray-700/50 relative overflow-hidden">
+        
+        <!-- Background Glow Effect -->
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-indigo-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10">
+            <h1 class="text-3xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400 mb-6 tracking-tight">Bot Builder <span class="text-sm font-medium text-purple-300 align-top">PRO</span></h1>
+
+            <!-- AD BANNER (Native & Clean) -->
+            <div class="bg-gray-900/50 border border-dashed border-gray-600/50 text-gray-500 text-center p-3 rounded-xl text-xs font-medium tracking-wide mb-8">
+                Advertisement Space
+            </div>
+
+            <!-- STEP 1: Basics -->
+            <div id="step-1" class="step active">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold shadow-lg shadow-indigo-500/30">1</div>
+                    <h2 class="text-xl font-semibold text-gray-200">Bot Identity</h2>
+                </div>
+                
+                <div class="space-y-5">
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-400 mb-1 group-focus-within:text-indigo-400 transition-colors">Bot Name</label>
+                        <input type="text" id="botName" placeholder="e.g., NovaBot" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none text-white transition-all duration-300 placeholder-gray-600">
+                    </div>
+                    <div class="group">
+                        <label class="block text-sm font-medium text-gray-400 mb-1 group-focus-within:text-indigo-400 transition-colors">Command Prefix</label>
+                        <input type="text" id="botPrefix" placeholder="!" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 outline-none text-white transition-all duration-300 placeholder-gray-600">
+                    </div>
+                </div>
+                <button onclick="nextStep(2)" class="mt-8 w-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(99,102,241,0.5)] hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(99,102,241,0.6)] active:translate-y-0">Next: Core Features ➔</button>
+            </div>
+
+            <!-- STEP 2: Features -->
+            <div id="step-2" class="step">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 rounded-full bg-purple-500 flex items-center justify-center font-bold shadow-lg shadow-purple-500/30">2</div>
+                    <h2 class="text-xl font-semibold text-gray-200">Select Modules</h2>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <label class="feature-card cursor-pointer">
+                        <input type="checkbox" class="feature-check hidden" value="Moderation">
+                        <div class="p-4 bg-gray-900/50 border border-gray-700 rounded-xl transition-all duration-300 flex flex-col items-center justify-center space-y-2 hover:bg-gray-800">
+                            <span class="text-2xl">🛡️</span>
+                            <span class="text-sm font-medium">Moderation</span>
+                        </div>
+                    </label>
+                    <label class="feature-card cursor-pointer">
+                        <input type="checkbox" class="feature-check hidden" value="Economy">
+                        <div class="p-4 bg-gray-900/50 border border-gray-700 rounded-xl transition-all duration-300 flex flex-col items-center justify-center space-y-2 hover:bg-gray-800">
+                            <span class="text-2xl">💰</span>
+                            <span class="text-sm font-medium">Economy</span>
+                        </div>
+                    </label>
+                    <label class="feature-card cursor-pointer col-span-2">
+                        <input type="checkbox" class="feature-check hidden" value="Ticket System">
+                        <div class="p-4 bg-gray-900/50 border border-gray-700 rounded-xl transition-all duration-300 flex items-center justify-center space-x-3 hover:bg-gray-800">
+                            <span class="text-2xl">🎫</span>
+                            <span class="text-sm font-medium">Ticket System</span>
+                            <span class="px-2 py-0.5 bg-yellow-500/20 text-yellow-400 text-[10px] rounded-full uppercase tracking-wider font-bold">Premium</span>
+                        </div>
+                    </label>
+                </div>
+                
+                <div class="flex space-x-4 mt-8">
+                    <button onclick="nextStep(1)" class="w-1/3 bg-gray-700 hover:bg-gray-600 text-gray-300 py-4 rounded-xl transition-all duration-300 active:scale-95">Back</button>
+                    <button onclick="nextStep(3)" class="w-2/3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(168,85,247,0.5)] hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(168,85,247,0.6)] active:translate-y-0">Next: AI Logic ➔</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: AI Prompt & Generation -->
+            <div id="step-3" class="step">
+                <div class="flex items-center space-x-2 mb-6">
+                    <div class="w-8 h-8 rounded-full bg-pink-500 flex items-center justify-center font-bold shadow-lg shadow-pink-500/30">3</div>
+                    <h2 class="text-xl font-semibold text-gray-200">AI Instructions</h2>
+                </div>
+
+                <div class="group">
+                    <textarea id="aiPrompt" rows="4" placeholder="Describe specific commands (e.g., 'Make a command to ban users and log it in #logs channel')" class="w-full p-4 bg-gray-900/50 border border-gray-700 rounded-xl focus:ring-2 focus:ring-pink-500/50 focus:border-pink-500 outline-none text-white transition-all duration-300 placeholder-gray-600 resize-none"></textarea>
+                </div>
+                
+                <div class="flex space-x-4 mt-8">
+                    <button onclick="nextStep(2)" class="w-1/3 bg-gray-700 hover:bg-gray-600 text-gray-300 py-4 rounded-xl transition-all duration-300 active:scale-95">Back</button>
+                    <button onclick="generateBot()" id="genBtn" class="w-2/3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold py-4 rounded-xl transition-all duration-300 shadow-[0_10px_20px_-10px_rgba(16,185,129,0.5)] hover:-translate-y-1 hover:shadow-[0_15px_25px_-10px_rgba(16,185,129,0.6)] active:translate-y-0 flex justify-center items-center overflow-hidden relative">
+                        <span id="genText" class="relative z-10 transition-all duration-300">🚀 Build Architecture</span>
+                        <svg id="loader" class="animate-spin h-5 w-5 ml-2 hidden text-white absolute right-4 z-10" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        
+                        <!-- Pulse effect when loading -->
+                        <div id="btnPulse" class="absolute inset-0 bg-white/20 hidden animate-pulse"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Section -->
+            <div id="result-section" class="hidden mt-8 border-t border-gray-700/50 pt-6">
+                <div class="flex items-center justify-between mb-3">
+                    <h3 class="text-emerald-400 font-bold flex items-center"><span class="mr-2">✨</span> Compilation Successful</h3>
+                    <button onclick="copyCode()" class="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-md border border-gray-600 transition-colors active:scale-95">Copy Code</button>
+                </div>
+                <div class="bg-gray-950/80 p-4 rounded-xl border border-gray-800 overflow-x-auto custom-scrollbar">
+                    <pre id="outputCode" class="text-sm text-emerald-300/90 font-mono">Code will appear here...</pre>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function nextStep(stepNum) {
+            // Remove active class from all
+            document.querySelectorAll('.step').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to target step (triggers CSS animation)
+            const activeStep = document.getElementById(`step-${stepNum}`);
+            activeStep.classList.add('active');
+        }
+
+        async function generateBot() {
+            const btn = document.getElementById('genBtn');
+            const loader = document.getElementById('loader');
+            const text = document.getElementById('genText');
+            const pulse = document.getElementById('btnPulse');
+            
+            // Gather Data
+            const botName = document.getElementById('botName').value;
+            const features = Array.from(document.querySelectorAll('.feature-check:checked')).map(cb => cb.value);
+            const aiPrompt = document.getElementById('aiPrompt').value;
+
+            if(!botName) {
+                document.getElementById('botName').classList.add('border-red-500', 'ring-2', 'ring-red-500/50');
+                setTimeout(() => document.getElementById('botName').classList.remove('border-red-500', 'ring-2', 'ring-red-500/50'), 2000);
+                return;
+            }
+
+            // UI Loading State
+            text.innerText = "Compiling logic...";
+            text.classList.add('-translate-x-3'); // Shift text left to make room for loader
+            loader.classList.remove('hidden');
+            pulse.classList.remove('hidden');
+            btn.disabled = true;
+            btn.classList.add('cursor-not-allowed', 'opacity-90');
+
+            try {
+                // Call Node.js Backend 
+                const response = await fetch('/api/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ botName, features, customPrompt: aiPrompt })
+                });
+                
+                const data = await response.json();
+
+                if(data.success) {
+                    const resSection = document.getElementById('result-section');
+                    resSection.classList.remove('hidden');
+                    // Add smooth slide down for result
+                    resSection.style.animation = "slideUpFade 0.6s ease forwards";
+                    document.getElementById('outputCode').innerText = data.code;
+                    
+                    // Scroll to result smoothly on mobile
+                    resSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                } else {
+                    alert("Error: " + data.message);
+                }
+            } catch (err) {
+                alert("Network error. Please try again.");
+            } finally {
+                // Reset Button UI
+                text.innerText = "🚀 Build Architecture";
+                text.classList.remove('-translate-x-3');
+                loader.classList.add('hidden');
+                pulse.classList.add('hidden');
+                btn.disabled = false;
+                btn.classList.remove('cursor-not-allowed', 'opacity-90');
+            }
+        }
+
+        function copyCode() {
+            const codeText = document.getElementById('outputCode').innerText;
+            navigator.clipboard.writeText(codeText);
+            
+            // Visual feedback
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-5 right-5 bg-emerald-500 text-white px-4 py-2 rounded-lg shadow-lg font-medium text-sm z-50 transform translate-y-10 opacity-0 transition-all duration-300';
+            toast.innerText = 'Code Copied to Clipboard!';
+            document.body.appendChild(toast);
+            
+            // Animate in
+            setTimeout(() => {
+                toast.classList.remove('translate-y-10', 'opacity-0');
+            }, 10);
+            
+            // Remove after 3s
+            setTimeout(() => {
+                toast.classList.add('translate-y-10', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
