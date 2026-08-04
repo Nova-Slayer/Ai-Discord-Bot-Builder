@@ -1,0 +1,21 @@
+{
+  "name": "nova-bot-builder-pro",
+  "version": "1.0.0",
+  "description": "Production-ready AI Discord Bot Builder Engine with multi-API fallback",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "author": "NovaSlayer YT",
+  "license": "MIT"
+}
